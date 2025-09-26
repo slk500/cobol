@@ -1,0 +1,120 @@
+* language
+** PERFORM
+Like functions.
+** LINKAGE SECTION
+CALL 'fileName' USING Num1, Num2, Num3....
+** compile
+- cobc -x hello.cob
+- ./hello.cob
+** code
+*** hello COBOL!
+#+begin_src cobol
+  identification division.
+  program-id. hello.
+  procedure division.
+    display "Hello, COBOL!"
+  stop run.
+#+end_src
+
+#+RESULTS:
+: Hello, COBOL!
+*** decimal arithmetic
+#+begin_src cobol
+  identification division.
+  program-id. hello.
+      environment division.
+      data division.
+      working-storage section.
+          01 Price PIC 9(3)V99 value 100.
+          01 TaxRate PIC V99 value .22.
+          01 FullPrice PIC 9(3)V99.
+          procedure division.
+  compute FullPrice rounded = Price + (Price * TaxRate).
+  display "Price + Tax: " FullPrice.
+  stop run.
+#+end_src
+
+#+RESULTS:
+: Price + Tax: 122.00
+
+**** decimal arithmetic with input
+#+begin_src cobol
+  identification division.
+  program-id. hello.
+      environment division.
+      data division.
+      working-storage section.
+          01 Price PIC 9(3)V99.
+          01 TaxRate PIC V99 value .22.
+          01 FullPrice PIC 9(3)V99.
+          procedure division.
+  display "Enter the price: " WITH NO ADVANCING
+  accept Price
+  compute FullPrice rounded = Price + (Price * TaxRate).
+  display "Price + Tax: " FullPrice.
+  stop run.
+#+end_src
+
+* dictionary 
+** legacy application developer
+A legacy application developer maintains, updates, or
+modernizes old, outdated software that is still critical to
+a business's operations but uses outdated technology or
+languages. These developers work with systems that may be
+poorly documented, lack community support, and are difficult
+to integrate with newer systems, presenting unique technical
+and problem-solving challenges. They often need to work with
+legacy languages like COBOL and frameworks, and their goal
+is to extend the life of these systems, improve performance,
+or gradually migrate them to newer technologies.
+* articles
+** DONE [[https://www.datacenterknowledge.com/build-design/no-cobol-is-not-a-dead-language][No, COBOL Is Not a Dead Language]]
+CLOSED: [2025-09-26 Fri 13:10]
+:LOGBOOK:
+- State "DONE"       from              [2025-09-26 Fri 13:10]
+:END:
+** DONE [[https://datagubbe.se/cobol/][A Lasting Legacy: Thoughts on COBOL]]
+CLOSED: [2025-09-24 Wed 22:11]
+:LOGBOOK:
+- State "DONE"       from              [2025-09-24 Wed 22:11]
+:END:
+** DONE [[https://web.archive.org/web/20160826003417/https://medium.com/@Svenskunganka/interviewing-my-mother-a-mainframe-cobol-programmer-c693d40d88f7#.66qbnhd8p][Interviewing my mother, a mainframe COBOL programmer]]
+CLOSED: [2025-09-20 Sat 19:45]
+:LOGBOOK:
+- State "DONE"       from              [2025-09-20 Sat 19:45]
+:END:
+** DONE [[https://www.fastcompany.com/91278597/elon-musk-doge-cobol-language][Elon Musk’s DOGE team may need a crash course in COBOL]]
+CLOSED: [2025-09-20 Sat 21:04]
+:LOGBOOK:
+- State "DONE"       from              [2025-09-20 Sat 21:04]
+:END:
+* videos
+** DONE [[https://youtu.be/p7L8xqKzmP8][The Code that Runs the World]]
+CLOSED: [2025-09-17 Wed 10:18]
+:LOGBOOK:
+- State "DONE"       from              [2025-09-17 Wed 10:18]
+:END:
+** DONE [[https://www.youtube.com/watch?v=csreYlLXMzI&t=139s][Is 2020 the Year of COBOL?  Is a 60 year old language now the most in-demand programming skill?]]
+CLOSED: [2025-09-19 Fri 22:12]
+:LOGBOOK:
+- State "DONE"       from              [2025-09-19 Fri 22:12]
+:END:
+- https://openmainframeproject.org/
+- cobol cadets 
+- gracehopper.com
+- jeff bisti
+- masterthemainframe.com
+** [[https://youtu.be/TBs7HXI76yU][COBOL Tutorial : Learn COBOL in One Video - Derek Banas]]
+:LOGBOOK:
+CLOCK: [2025-09-26 Fri 19:41]--[2025-09-26 Fri 20:06] =>  0:25
+CLOCK: [2025-09-26 Fri 15:03]--[2025-09-26 Fri 15:27] =>  0:25
+CLOCK: [2025-09-26 Fri 12:38]--[2025-09-26 Fri 13:03] =>  0:25
+:END:
+** [[https://www.youtube.com/watch?v=_pAX_ogguLI][Cobol tutorial for Beginners | Cobol Essential Training]]
+** [[https://www.youtube.com/watch?v=RdMAEdGvtLA][COBOL Course - Programming with VSCode]]
+- jeff bisti
+** [[https://www.youtube.com/watch?v=XbRNDcGFrOM&list=PLdG1SnrYXH0EmUqQWol39Fd6VHcr-FbwS][Bill Sky - The Computer Guy!]]
+* links
+** [[https://www.youtube.com/playlist?list=PLfg9ycqfY2SX19hFRfuALDcpe6OdNVobX][Mainframe]]
+* books
+** Structured Cobol Programming by Nancy & Robert Stern - 1988
