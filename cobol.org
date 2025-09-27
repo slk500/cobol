@@ -1,47 +1,46 @@
 * language
-** PERFORM
-Like functions.
-** LINKAGE SECTION
-CALL 'fileName' USING Num1, Num2, Num3....
-** compile
-- cobc -x hello.cob
-- ./hello.cob
 ** code
-*** hello COBOL!
+*** strings: tallying - letters
 #+begin_src cobol
-  identification division.
   program-id. hello.
-  procedure division.
-    display "Hello, COBOL!"
-  stop run.
-#+end_src
-
-#+RESULTS:
-: Hello, COBOL!
-*** decimal arithmetic
-#+begin_src cobol
-  identification division.
-  program-id. hello.
-      environment division.
       data division.
       working-storage section.
-          01 Price PIC 9(3)V99 value 100.
-          01 TaxRate PIC V99 value .22.
-          01 FullPrice PIC 9(3)V99.
-          procedure division.
-  compute FullPrice rounded = Price + (Price * TaxRate).
-  display "Price + Tax: " FullPrice.
+  01 NumChars PIC 99 value 0.
+  01 FirstName PIC X(6) value "Slava".
+  procedure division.
+  inspect FirstName tallying NumChars for characters.
+          display "Numer of chars in " FirstName " is " NumChars.
   stop run.
 #+end_src
 
 #+RESULTS:
-: Price + Tax: 122.00
+: Numer of chars in Slava  is 06
 
-**** decimal arithmetic with input
+- liczba określająca ilość liter w stringu - 6 - imię ma 5
+  więc dodaje puste miejsce.
+
+*** strings: tallying
 #+begin_src cobol
-  identification division.
   program-id. hello.
-      environment division.
+      data division.
+      working-storage section.
+  01 NumChars PIC 99 value 0.
+  01 FirstName PIC X(6) value "Slava".
+  procedure division.
+  inspect FirstName tallying NumChars for characters.
+  display "Number of chars in " FirstName " is " NumChars.
+  stop run.
+#+end_src
+
+#+RESULTS:
+: Numer of chars in Slava  is 06
+
+- liczba określająca ilość liter w stringu - 6 - imię ma 5
+  więc dodaje puste miejsce.
+  
+*** decimal arithmetic with input
+#+begin_src cobol
+  program-id. hello.
       data division.
       working-storage section.
           01 Price PIC 9(3)V99.
@@ -55,6 +54,40 @@ CALL 'fileName' USING Num1, Num2, Num3....
   stop run.
 #+end_src
 
+*** decimal arithmetic
+#+begin_src cobol
+  program-id. hello.
+      data division.
+      working-storage section.
+  01 Price PIC 9(3)V99 value 100.
+  01 TaxRate PIC V99 value .22.
+  01 FullPrice PIC 9(3)V99.
+  procedure division.
+          compute FullPrice rounded = Price + (Price * TaxRate).
+          display "Price + Tax: " FullPrice.
+  stop run.
+#+end_src
+
+#+RESULTS:
+: Price + Tax: 122.00
+
+*** hello COBOL!
+#+begin_src cobol
+  program-id. hello.
+      procedure division.
+      display "Hello, COBOL!"
+      stop run.
+  #+end_src
+
+#+RESULTS:
+: Hello, COBOL!
+** PERFORM
+Like functions.
+** LINKAGE SECTION
+CALL 'fileName' USING Num1, Num2, Num3....
+** compile
+- cobc -x hello.cob
+- ./hello.cob
 * dictionary 
 ** legacy application developer
 A legacy application developer maintains, updates, or
@@ -106,6 +139,7 @@ CLOSED: [2025-09-19 Fri 22:12]
 - masterthemainframe.com
 ** [[https://youtu.be/TBs7HXI76yU][COBOL Tutorial : Learn COBOL in One Video - Derek Banas]]
 :LOGBOOK:
+CLOCK: [2025-09-27 Sat 13:03]--[2025-09-27 Sat 13:28] =>  0:25
 CLOCK: [2025-09-26 Fri 19:41]--[2025-09-26 Fri 20:06] =>  0:25
 CLOCK: [2025-09-26 Fri 15:03]--[2025-09-26 Fri 15:27] =>  0:25
 CLOCK: [2025-09-26 Fri 12:38]--[2025-09-26 Fri 13:03] =>  0:25
