@@ -1,24 +1,57 @@
 * language
 ** code
+*** strings: concatanate
+#+begin_src cobol
+  program-id. hello.
+      data division.
+      working-storage section.
+    01 FirstName PIC X(5) value "Slava".
+    01 LastName  PIC X(10) value "Grochowski".
+    01 FullName  PIC X(16).
+  procedure division.
+          string FirstName delimited by size
+          space
+          LastName delimited by size
+          into FullName.
+          display FullName.
+  stop run.
+#+end_src
+
+#+RESULTS:
+: Slava Grochowski
+
+*** strings: upper/lower case
+#+begin_src cobol
+  program-id. hello.
+      data division.
+      working-storage section.
+    01 FirstName PIC X(6) value "Slava".
+  procedure division.
+          display function upper-case(FirstName)
+          display function lower-case(FirstName)
+  stop run.
+#+end_src
+
+#+RESULTS:
+: SLAVA 
+: slava 
+
 *** strings: tallying - letters
 #+begin_src cobol
   program-id. hello.
       data division.
       working-storage section.
-  01 NumChars PIC 99 value 0.
+  01 NumAs PIC 99 value 0.
   01 FirstName PIC X(6) value "Slava".
   procedure division.
-  inspect FirstName tallying NumChars for characters.
-          display "Numer of chars in " FirstName " is " NumChars.
+          inspect FirstName tallying NumAs for all 'a'.
+          display "Numer of chars in " FirstName " is " NumAs.
   stop run.
 #+end_src
 
 #+RESULTS:
-: Numer of chars in Slava  is 06
-
-- liczba określająca ilość liter w stringu - 6 - imię ma 5
-  więc dodaje puste miejsce.
-
+: Numer of chars in Slava  is 02
+  
 *** strings: tallying
 #+begin_src cobol
   program-id. hello.
@@ -27,8 +60,8 @@
   01 NumChars PIC 99 value 0.
   01 FirstName PIC X(6) value "Slava".
   procedure division.
-  inspect FirstName tallying NumChars for characters.
-  display "Number of chars in " FirstName " is " NumChars.
+          inspect FirstName tallying NumChars for characters.
+          display "Number of chars in " FirstName " is " NumChars.
   stop run.
 #+end_src
 
@@ -139,6 +172,7 @@ CLOSED: [2025-09-19 Fri 22:12]
 - masterthemainframe.com
 ** [[https://youtu.be/TBs7HXI76yU][COBOL Tutorial : Learn COBOL in One Video - Derek Banas]]
 :LOGBOOK:
+CLOCK: [2025-10-16 Thu 12:33]--[2025-10-16 Thu 12:58] =>  0:25
 CLOCK: [2025-09-27 Sat 13:03]--[2025-09-27 Sat 13:28] =>  0:25
 CLOCK: [2025-09-26 Fri 19:41]--[2025-09-26 Fri 20:06] =>  0:25
 CLOCK: [2025-09-26 Fri 15:03]--[2025-09-26 Fri 15:27] =>  0:25
