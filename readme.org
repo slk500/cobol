@@ -114,13 +114,14 @@
 
 #+RESULTS:
 : Hello, COBOL!
+
+** compile
+- cobc -x hello.cob
+- ./hello.cob
 ** PERFORM
 Like functions.
 ** LINKAGE SECTION
 CALL 'fileName' USING Num1, Num2, Num3....
-** compile
-- cobc -x hello.cob
-- ./hello.cob
 * dictionary 
 ** legacy application developer
 A legacy application developer maintains, updates, or
