@@ -115,6 +115,38 @@
 #+RESULTS:
 : Hello, COBOL!
 
+** sections
+*** data division.
+*** working-storage section.
+**** declaring a variable
+#+begin_src cobol
+  01 var      pic 9(03).
+#+end_src
+
+The number "01" indicates the level of nesting for a
+variable. It is the top-level, meaning that the variable
+(var) is not part of any group or structure. Level
+numbers are used to define data in nested structures, and
+"01" always signifies a top-level data item.
+**** declaring a variable with initialized
+#+begin_src cobol
+  01 var      pic 9(03) VALUE 128.
+#+end_src
+**** declaring a group variable and elementary variable
+#+begin_src cobol
+/ Group variable | Data item
+  01 WS-GROUP.
+/ Elementary Variable | Data item
+    02 WS-ELEM1      PIC 9(03).
+    02 WS-ELEM2      PIC 9(03).
+#+end_src
+**** declaring a conditional variable
+#+begin_src cobol
+/ Condition Variable
+ 01 WS-GENDER      PIC X(01).
+    02 WS-MALE     VALUE "M".
+    02 WS-FEMALE   VALUE "F".
+#+end_src
 ** compile
 - cobc -x hello.cob
 - ./hello.cob
@@ -173,6 +205,7 @@ CLOSED: [2025-09-19 Fri 22:12]
 - masterthemainframe.com
 ** [[https://youtu.be/TBs7HXI76yU][COBOL Tutorial : Learn COBOL in One Video - Derek Banas]]
 :LOGBOOK:
+CLOCK: [2025-10-18 Sat 18:51]--[2025-10-18 Sat 19:16] =>  0:25
 CLOCK: [2025-10-16 Thu 12:33]--[2025-10-16 Thu 12:58] =>  0:25
 CLOCK: [2025-09-27 Sat 13:03]--[2025-09-27 Sat 13:28] =>  0:25
 CLOCK: [2025-09-26 Fri 19:41]--[2025-09-26 Fri 20:06] =>  0:25
@@ -185,5 +218,6 @@ CLOCK: [2025-09-26 Fri 12:38]--[2025-09-26 Fri 13:03] =>  0:25
 ** [[https://www.youtube.com/watch?v=XbRNDcGFrOM&list=PLdG1SnrYXH0EmUqQWol39Fd6VHcr-FbwS][Bill Sky - The Computer Guy!]]
 * links
 ** [[https://www.youtube.com/playlist?list=PLfg9ycqfY2SX19hFRfuALDcpe6OdNVobX][Mainframe]]
+** https://www.mainframestechhelp.com/tutorials/cobol/
 * books
 ** Structured Cobol Programming by Nancy & Robert Stern - 1988
