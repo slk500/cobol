@@ -10,6 +10,81 @@
 
 * language
 ** code
+*** while
+#+begin_src cobol
+  program-id. hello.
+      data division.
+      working-storage section.
+  01 Ind PIC 9(1) value 0.
+  procedure division.
+  perform OutputData with test after until Ind > 5
+          stop run.
+
+  OutputData.
+      display Ind.
+      add 1 to Ind.
+#+end_src
+
+#+RESULTS:
+: 0
+: 1
+: 2
+: 3
+: 4
+: 5
+
+*** subroutines / linkage
+#+begin_src cobol
+  program-id. GETSUM.
+  data division.
+  linkage section.
+      01 LNum1 PIC 9 VALUE 5.
+      01 LNum2 PIC 9 VALUE 4.
+      01 LSum1 PIC 99.
+  procedure division using LNum1, LNum2, LSum.
+      compute LSum = LNum1 + LNum2.
+exit program.
+#+end_src
+
+#+begin_src cobol
+  program-id. hello.
+  data division.
+  working-storage section.
+      01 Num1 PIC 9 VALUE 5.
+      01 Num2 PIC 9 VALUE 4.
+      01 Sum1 PIC 99.
+  procedure division.
+  call 'GETSUM' using Num1, Num2, Sum1.
+  display Num1 " + " Num2 " = " Sum1.
+exit program.
+#+end_src
+
+*** paragraphs
+#+begin_src cobol
+  program-id. hello.
+      data division.
+      working-storage section.
+  procedure division.
+          SubOne.
+              display "in paragraph 1"
+              perform SubTwo
+              perform 2 times
+                  display "repeat"
+              end-perform
+              stop run.
+          SubTwo.
+              display "in paragraph 2"
+              perform SubThree.
+          SubThree.
+              display "in paragraph 3".
+#+end_src
+
+#+RESULTS:
+: in paragraph 1
+: in paragraph 2
+: in paragraph 3
+: repeat
+: repeat
 *** strings: concatanate
 #+begin_src cobol
   program-id. hello.
@@ -157,6 +232,7 @@ numbers are used to define data in nested structures, and
     02 WS-MALE     VALUE "M".
     02 WS-FEMALE   VALUE "F".
 #+end_src
+*** procedure division.
 ** compile
 - cobc -x hello.cob
 - ./hello.cob
@@ -215,7 +291,8 @@ CLOSED: [2025-09-19 Fri 22:12]
 - masterthemainframe.com
 ** [[https://youtu.be/TBs7HXI76yU][COBOL Tutorial : Learn COBOL in One Video - Derek Banas]]
 :LOGBOOK:
-CLOCK: [2025-10-18 Sat 19:52]
+CLOCK: [2025-10-18 Sat 20:48]--[2025-10-18 Sat 21:13] =>  0:25
+CLOCK: [2025-10-18 Sat 19:52]--[2025-10-18 Sat 20:17] =>  0:25
 CLOCK: [2025-10-18 Sat 18:51]--[2025-10-18 Sat 19:16] =>  0:25
 CLOCK: [2025-10-16 Thu 12:33]--[2025-10-16 Thu 12:58] =>  0:25
 CLOCK: [2025-09-27 Sat 13:03]--[2025-09-27 Sat 13:28] =>  0:25
